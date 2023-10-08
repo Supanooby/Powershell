@@ -30,3 +30,40 @@ Set-NetConnectionProfile  -InterfaceIndex 1 -NetWorkCatagory Private
 #Finally Enable PSRemoting to make it work
 Enable-PSRemoting
 
+
+
+#One-to-One Interactive
+Start-Transcript
+
+# create SessionGe
+$ds = Enter-PSSession -ComputerName Serv01 -Credential ad_administratior
+
+# See running sessions
+Get-PSSession
+# Stop Sessions
+Get-PSSession | Exit-PSSession
+
+# One to Many using "Invoke-Command"
+Invoke-Command -ComputerName Server1, s2, win1 -ScriptBlock {Get-EventLog -LogName Security  }
+
+# Get Credential
+$cn = “dc1”,”dc2”,”dc3”
+$cred = Get-Credential AD\Administrator
+Invoke-Command –cn $cn –cred $cred –ScriptBlock {gwmi win32_bios
+
+# Run script on one-to-one
+Invoke-Command -FilePath C:\Windows\script.ps1 -ComputerName win1 
+
+
+
+#Accept Session
+
+$dc = New-PSSession –ComputerName WIN10 –Credential AD\Administrator
+Invoke-Command –Session $dc –ScriptBlock {hostname}
+Invoke-Command –Session $dc –ScriptBlock {Get-EventLog Application –newest 1}
+Remove-PSSession $dc
+
+
+# Powershell Web Access  Running powershell web server 
+
+
