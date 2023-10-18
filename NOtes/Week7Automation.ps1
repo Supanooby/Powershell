@@ -43,6 +43,13 @@ $e.Length
 $e.CompareTo("hello") #1
 $e.CompareTo("ARerarara") #-1
 
+# Replace string
+$v="Hi Max"
+$v.Replace("Max","loshy")
+# $v still has same value when printing out $v
+
+
+
 # Casting 
 $a="123" 
 # Get the value of $a and make it an integer 
@@ -80,3 +87,54 @@ Write-Host "Tharson" -ForegroundColor yellow -BackgroundColor red
 
 $ser = Get-Service
 
+# Make commands repeatable, save as ps1, and execute using powershell
+Get-WmiObject -Class win32_logicaldisk -ComputerName localhost | Sort-Object Name | Select-Object Deviceid.Drive Type,Size
+
+
+
+# Functions 
+# Non-Return function
+Function myFun{
+Write-Host "You are printing this statement from function"
+}
+
+# Call Function
+myFun
+
+#Return Function and Parameter
+Function myFun{
+
+#Create Parameters
+PARAM([int]$age, [string]$name)
+Write-Host "Hi $name, your age is $age"
+
+}
+
+myFun 22 "Tharson"
+
+
+
+# Store your tools in a Module 
+
+
+# If Statement
+# Example 1
+$proc = Get-Process | Select-Object -Property WS | ForEach-Object{Write-Host $_}
+
+Function myFun
+{
+    Param($a)
+    if($a -gt 1000) {Write-Host $a}
+}
+
+
+# Example 2
+Function myFunc
+{
+    Param([int32]$mark)
+    if($mark -ge 50){Write-Host "Pass"}
+    else{Write-Host "Fail"}
+}
+
+myFunc 34
+myFunc 89
