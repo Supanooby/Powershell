@@ -138,3 +138,20 @@ Function myFunc
 
 myFunc 34
 myFunc 89
+
+
+# Return Function
+function myFuncReturn { 
+ param([int]$v1, [int]$v2)
+
+ $r = $v1 + $v2
+
+ return $r
+
+}
+
+$value1 = Read-Host -Prompt "VALUE 1"
+$value2 = Read-Host -Prompt "VALUE 1"
+$result = myFuncReturn $value1 $value2
+
+
