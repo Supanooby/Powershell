@@ -69,7 +69,7 @@ $v2 = ($v++)+3
 
 
 
-#Loops
+# -------- Loops --------
 # For Loops
 for($i-0;$i -le 5; $i++) 
 {
@@ -102,11 +102,109 @@ until ($i -gt 5)
 
 
 
+# -------- Interupt Loops --------
+# Break out of loop
+for($v=1;$v -le 10; $v++) {
+    if($v -eq 7) 
+    {break}                                 # Break out of the loop
+    Write-Host "the current value is $v"    # This won't get done past 7
+}
+
+# Continue the loop
+for($v=1;$v -le 10; $v++) {
+    if($v -eq 7) 
+    {continue}                              # Skip this part of the loop from here, and continue to next 
+    Write-Host "the current value is $v"    # This won't get done at 7
+}
 
 
+# If Statements
+# If
+[int]$v=Read-Host -Prompt "input value"
+
+if($v -eq 60) {
+    Write-Host "Yes"
+} else {
+    Write-Host "No"
+}
+
+# If Else 
+[int]$v=Read-Host -Prompt "input mark"
+
+if($v -ge 90) {
+    Write-Host "very good"
+} elseif($v -ge 75) {
+    Write-Host "good"
+} elseif($v -ge 50) {
+    Write-Host "not bad"
+} else {
+    Write-host "fail" -BackgroundColor Cyan
+}
 
 
+# Nested IF statements
+[int]$v=Read-Host -Prompt "input mark"
+if(($v -ge 0) -and ($v -le 100))
+{
+    
+    if($v -ge 90) {
+        Write-Host "very good"
+    } elseif($v -ge 75) {
+        Write-Host "good"
+    } elseif($v -ge 50) {
+        Write-Host "not bad"
+    } else {
+        Write-host "fail" -BackgroundColor Cyan
+    }
+} 
+else 
+{
+    Write-Host "Invalid Value"
+}
 
+# If While Loop
 
+$c=-1
+while($c -eq -1) 
+{
+    [int]$v=Read-Host -Prompt "input mark"
+    if(($v -ge 0) -and ($v -le 100))
+    {
+        
+        if($v -ge 90) {
+            Write-Host "very good"
+        } elseif($v -ge 75) {
+            Write-Host "good"
+        } elseif($v -ge 50) {
+            Write-Host "not bad"
+        } else {
+            Write-host "fail" -BackgroundColor Cyan
+        }
+    } 
+    else 
+    {
+        break
+    }
+}
 
-
+#Switch case
+[int]$v=Read-Host -Prompt "input mark"
+switch($v)
+{   
+    # If $v is 90
+    90
+    { 
+        Write-Host "Very Good"
+        break
+    }
+    80 
+    {
+        Write-Host "Good"
+        break
+    }
+    70 
+    { 
+        Write-Host ""
+        break
+    }
+}
