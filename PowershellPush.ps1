@@ -6,3 +6,4 @@ git commit -m "$message"
 git push Powershell main
 Exit 
 
+Read-Host "Press enter to leave"
