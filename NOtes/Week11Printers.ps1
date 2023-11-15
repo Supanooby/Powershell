@@ -80,3 +80,9 @@ $myPar = @{
 }
 
 New-SmbShare $myPar
+
+# Status, Enable, and Disable SMB1
+Get-WindowsOptionalFeature -Online -FeatureName SMB1Protocol
+Enable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol
+Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol
+
