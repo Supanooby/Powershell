@@ -56,7 +56,27 @@ Rename-Printer -Name "Myprinter2" -NewName "MyPrinter3"
 # Remove Printer
 Remove-Printer -Name "MyPrinter3"
 # Remove Printer Driver
-Remove-PrinterDriver -Name "v"
+Remove-PrinterDriver -Name "Send to Microsoft OneNote 16 Driver"
 
-#Set Configuratin
+#Set Printer Configurations for printing 
 Set-PrintConfiguration -PrinterName "MyPrinter" -PaperSize A4 -Color $True -DuplexingMode OneSided
+
+#Update configuraotin of existing printer: 
+Set-Printer -Name "MyPrinter" -KeepPrintedJobs $True -Shared $True -ShareName "SharedMyPrinter"
+
+Set-PrinterProperty -PrinterName "MyPrinter" -PropertyName "Config:DuplexUnit" -Value $True 
+
+# Share Folder locally
+New-SmbShare -path "C:\TestFolder" -Name "SharedFolder1"
+
+# Share folder on domain
+New-SmbShare -path "C:\TestFolder" -Name "SharedFolder1" -FullAccess "DomainName1\UserName1" -ChangeAccess "DomainName2\UserName2" 
+    # Or 
+$myPar = @{
+    Name='MySharing' 
+    Path= 'C:\TestFolder'
+    FullAccess='DomainName1\User1'
+    ChangeAccess='Domain2\User2'
+}
+
+New-SmbShare $myPar
