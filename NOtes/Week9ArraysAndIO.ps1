@@ -187,6 +187,28 @@ while($c -eq -1)
     }
 }
 
+# While loop to input items into array
+$myArr = 1,1,1,1,1,1,1,1,1
+
+$i=0
+while($i -lt $myArr.Count) {
+    [int]$v = Read-Host -Prompt "please input value less than 300 and greater than  0"
+
+    if (($v -le 300) -and ($v -ge 0))
+    {
+        $myArr[$i]=$v
+        $i++
+    }
+    else 
+    {
+        Write-Host "invalid value"
+    }
+}
+
+foreach($item in $myArr){Write-Host "The value is $item"}
+
+
+
 #Switch case
 [int]$v=Read-Host -Prompt "input mark"
 switch($v)
