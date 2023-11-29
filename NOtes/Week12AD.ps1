@@ -31,5 +31,3 @@ dsadd computer cn=clinet01,cn=computers,dc=TharsonD,dc=com
 Disable-ADAccount -identity "Test2"
 
 
-
-
