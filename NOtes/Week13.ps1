@@ -31,5 +31,19 @@ $pwd = Read-Host -AsSecureString "input password"
 
 Set-AdAccountPassword -Identity "tthumb" -NewPassword $pass -Reset
 
+# Search for users 
+Get-ADUSer -salonius
+# or 
+Get-AdUser -Filter *
+# or 
+Get-ADUser -FIlter {(Surname -like "sal*")}
+
+# Search for account with sepcific parameters
+Search-ADAccount -PasswordExpired -UsersOnly -SearchBse "OU=Users,dc=cpandl,dc=com" -SearchScope OneLevel
 
 
+# Restore Delted OBjects
+Restore-ADObject
+
+#Modify UAC properties on user objects
+Set-ADAccountControl
